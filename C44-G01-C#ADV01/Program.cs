@@ -1,11 +1,29 @@
-﻿namespace C44_G01_C_ADV01
+﻿using static C44_G01_C_ADV01.SortingAlgorithms;
+
+namespace C44_G01_C_ADV01
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-           
+            int[] numbers = { 5, 3, 8, 4, 2 };
+            Console.WriteLine("Before sorting: " + string.Join(", ", numbers));
+
+            SortingAlgorithms.OptimizedBubbleSort(numbers);
+            Console.WriteLine("After sorting: " + string.Join(", ", numbers));
+
+            // Range Test
+            var intRange = new Range<int>(10, 20);
+            Console.WriteLine($"Range: {intRange}");
+            Console.WriteLine($"Is 15 in range? {intRange.IsInRange(15)}");
+            Console.WriteLine($"Range length: {intRange.Length()}");
+
+            var dateRange = new Range<DateTime>(
+                new DateTime(2023, 1, 1),
+                new DateTime(2023, 12, 31));
+            Console.WriteLine($"Is July in range? {dateRange.IsInRange(new DateTime(2023, 7, 1))}");
         }
+    }
         #region SortingAlgorithms
         public class SortingAlgorithms
         {
@@ -18,12 +36,12 @@
                 {
                     swapped = false;
 
-                    // Last i elements are already in place
+
                     for (int j = 0; j < n - i - 1; j++)
                     {
                         if (array[j].CompareTo(array[j + 1]) > 0)
                         {
-                            // Swap elements
+
                             T temp = array[j];
                             array[j] = array[j + 1];
                             array[j + 1] = temp;
@@ -31,11 +49,12 @@
                         }
                     }
 
-                    // If no swaps occurred, array is sorted
+
                     if (!swapped) break;
                 }
+            }
                 #endregion
-                #region Range T 
+        #region Range T 
                 public class Range<T> where T : IComparable<T>
             {
                 public T Minimum { get; }
@@ -71,7 +90,9 @@
                 }
             }
             #endregion 
+
         }
     }
-    }
+    
+
 
